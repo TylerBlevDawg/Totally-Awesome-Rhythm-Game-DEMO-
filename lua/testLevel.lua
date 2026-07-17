@@ -48,9 +48,9 @@ function testLevel.draw()
     love.graphics.draw(text5, 10, 170)
     love.graphics.draw(text3, 10, 210)
 
-    if gameModule.hitState == "perfect" then
+    if gameModule.hitState == gameModule.hitStateEnum.perfect then
         love.graphics.rectangle("fill", PlayButton.body:getX(), 100, 1920/3, 100)
-    elseif gameModule.hitState == "good" then
+    elseif gameModule.hitState == gameModule.hitStateEnum.good then
         love.graphics.rectangle("fill", PlayButton.body:getX(), 300, 1920/3, 100)
     else
         love.graphics.rectangle("fill", PlayButton.body:getX(), 500, 1920/3, 100)
