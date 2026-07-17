@@ -4,8 +4,8 @@ local C = {
     FIRST_KEY = "j",
     SECOND_KEY = "k",
     OFFSET = 0,
-    PERF_THRESH = 30,
-    GOOD_THRESH = 70,
+    PERF_THRESH = 50,
+    GOOD_THRESH = 90,
     DISPLAY_FPS = 1,
     VSYNC = 1,
 }

@@ -20,6 +20,8 @@ gameModule.time = 0
 gameModule.supHits = 0
 gameModule.playerHits = 0
 gameModule.playerPerfHits = 0
+gameModule.playerMisses = 0
+gameModule.multiHitProtection = false
 
 -- cool divider between vars and functions
 
@@ -37,20 +39,24 @@ function gameModule:activateGame()
 end
 
 -- Will return 1 of 3 strings ("perfect", "good", "miss")
--- perfect: within 30 ms // good: within 70 ms // bad: anything past 70ms
+-- perfect: within 50 ms // good: within 90 ms // bad: anything past 70ms
 function gameModule:checkHit(key)
-    if self.hitState == self.hitStateEnum.good and key == self.hitTable.keys[self.supHits + 1] then
+    if self.hitState == self.hitStateEnum.good and key == self.hitTable.keys[self.supHits + 1] and not gameModule.multiHitProtection then
         self.playerHits = self.playerHits + 1
-    elseif self.hitState == self.hitStateEnum.perfect and key == self.hitTable.keys[self.supHits + 1] then
+        gameModule.multiHitProtection = true
+    elseif self.hitState == self.hitStateEnum.perfect and key == self.hitTable.keys[self.supHits + 1] and not gameModule.multiHitProtection then
         self.playerHits = self.playerHits + 1
         self.playerPerfHits = self.playerPerfHits + 1
+        gameModule.multiHitProtection = true
+    else
+        self.playerMisses = self.playerMisses + 1
     end
     return self.hitState
 end
 
 function gameModule:update(dt)
     if self.state == 1 then
-        self.time = self.time + (dt * 1000)
+        self.time = self.time + (dt * 100)
     end
 
     if (self.hitTable.times[self.supHits + 1] + self.offset) - self.time <= C.PERF_THRESH then
@@ -63,6 +69,7 @@ function gameModule:update(dt)
 
     if self.hitTable.times[self.supHits + 1] + self.offset + C.GOOD_THRESH <= self.time then
         self.supHits = self.supHits + 1
+        gameModule.multiHitProtection = false
     end
 end
 

@@ -29,12 +29,12 @@ end
 
 function testLevel:update(dt)
     gameModule:update(dt)
-    text = love.graphics.newText(font, gameModule.hitState)
-    text1 = love.graphics.newText(font, gameModule.time)
-    text2 = love.graphics.newText(font, gameModule.supHits)
-    text3 = love.graphics.newText(font, gameModule.playerHits)
-    text4 = love.graphics.newText(font, gameModule.hitTable.times[gameModule.supHits + 1] + gameModule.offset + 70)
-    text5 = love.graphics.newText(font, lastKeyHit)
+    text = love.graphics.newText(font, "hitState: " .. gameModule.hitState)
+    text1 = love.graphics.newText(font, "gameTime: " .. gameModule.time)
+    text2 = love.graphics.newText(font, "expectedHits: " .. gameModule.supHits)
+    text3 = love.graphics.newText(font, "playerHits: " .. gameModule.playerHits)
+    text4 = love.graphics.newText(font, "Next hit frame: " .. gameModule.hitTable.times[gameModule.supHits + 1] + gameModule.offset)
+    text5 = love.graphics.newText(font, "playerMisses: " .. gameModule.playerMisses)
     if gameModule.time >= 15000 then
         gameModule:pauseGame()
     end
