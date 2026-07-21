@@ -55,6 +55,10 @@ function gameModule:checkHit(key)
     return self.hitState
 end
 
+function gameModule:checkHitDebug()
+    return gameModule.time
+end
+
 function gameModule:update(dt)
     if self.state == 1 then
         self.time = self.time + (dt * 100)
