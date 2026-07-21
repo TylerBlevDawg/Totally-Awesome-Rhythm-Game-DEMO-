@@ -50,6 +50,7 @@ function gameModule:checkHit(key)
         gameModule.multiHitProtection = true
     else
         self.playerMisses = self.playerMisses + 1
+        return gameModule.hitStateEnum.miss
     end
     return self.hitState
 end
