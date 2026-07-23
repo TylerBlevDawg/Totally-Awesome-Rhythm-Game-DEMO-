@@ -61,7 +61,7 @@ end
 
 function gameModule:update(dt)
     if self.state == 1 then
-        self.time = self.time + (dt * 100)
+        self.time = self.time + (dt * 1000)
     end
 
     if (self.hitTable.times[self.supHits + 1] + self.offset) - self.time <= C.PERF_THRESH then
