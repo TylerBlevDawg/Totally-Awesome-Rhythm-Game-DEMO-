@@ -41,13 +41,7 @@ function testLevel:update(dt)
 end
 
 function testLevel.draw()
-    if gameModule.hitState == gameModule.hitStateEnum.perfect then
-        love.graphics.rectangle("fill", PlayButton.body:getX(), 100, 1920/3, 100)
-    elseif gameModule.hitState == gameModule.hitStateEnum.good then
-        love.graphics.rectangle("fill", PlayButton.body:getX(), 300, 1920/3, 100)
-    else
-        love.graphics.rectangle("fill", PlayButton.body:getX(), 500, 1920/3, 100)
-    end
+
 end
 
 return testLevel
